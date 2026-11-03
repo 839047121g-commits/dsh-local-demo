@@ -13,8 +13,12 @@ test("SERVICE_UNAVAILABLE 提示服务暂不可用", () => {
   );
 });
 
+test("NETWORK_TIMEOUT 提示网络连接超时", () => {
+  assert.equal(getLoginFailureMessage("NETWORK_TIMEOUT"), "网络连接超时，请重试");
+});
+
 test("其他已知错误码保留通用提示", () => {
-  assert.equal(getLoginFailureMessage("NETWORK_TIMEOUT"), "登录失败");
+  assert.equal(getLoginFailureMessage("RATE_LIMITED"), "登录失败");
 });
 
 test("未知错误码保留通用提示", () => {

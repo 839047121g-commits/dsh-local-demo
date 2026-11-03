@@ -12,6 +12,8 @@ export function getLoginFailureMessage(errorCode) {
       return "请检查账号或密码";
     case "SERVICE_UNAVAILABLE":
       return "服务暂不可用，请稍后再试";
+    case "NETWORK_TIMEOUT":
+      return "网络连接超时，请重试";
     default:
       return "登录失败";
   }
