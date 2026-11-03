@@ -1,0 +1,13 @@
+{
+  "name": "dsh-local-demo",
+  "version": "0.1.0",
+  "private": true,
+  "description": "DSH Superagent 登录失败提示修复实验",
+  "type": "module",
+  "scripts": {
+    "test": "node --test"
+  },
+  "engines": {
+    "node": ">=20"
+  }
+}
