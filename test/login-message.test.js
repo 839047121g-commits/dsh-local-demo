@@ -2,12 +2,23 @@ import assert from "node:assert/strict";
 import test from "node:test";
 import { getLoginFailureMessage } from "../src/login-message.js";
 
-test("当前基线：已知错误码统一显示通用提示", async (t) => {
-  for (const code of ["PASSWORD_INVALID", "SERVICE_UNAVAILABLE", "NETWORK_TIMEOUT"]) {
-    await t.test(code, () => {
-      assert.equal(getLoginFailureMessage(code), "登录失败");
-    });
-  }
+test("PASSWORD_INVALID 提示检查账号或密码", () => {
+  assert.equal(getLoginFailureMessage("PASSWORD_INVALID"), "请检查账号或密码");
+});
+
+test("SERVICE_UNAVAILABLE 提示服务暂不可用", () => {
+  assert.equal(
+    getLoginFailureMessage("SERVICE_UNAVAILABLE"),
+    "服务暂不可用，请稍后再试",
+  );
+});
+
+test("NETWORK_TIMEOUT 提示网络连接超时", () => {
+  assert.equal(getLoginFailureMessage("NETWORK_TIMEOUT"), "网络连接超时，请重试");
+});
+
+test("其他已知错误码保留通用提示", () => {
+  assert.equal(getLoginFailureMessage("RATE_LIMITED"), "登录失败");
 });
 
 test("未知错误码保留通用提示", () => {
